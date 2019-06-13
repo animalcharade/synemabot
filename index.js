@@ -6,6 +6,7 @@ const commands = require('./src/commands');
 
 // Twitch login deets
 const login = {
+  clientId: process.env.CLIENT_ID,
   token: process.env.OAUTH_TOKEN,
   username: process.env.BOT_USERNAME,
 };

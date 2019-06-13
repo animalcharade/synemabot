@@ -21,6 +21,24 @@ const commands = {
   unlurk(client, command) {
     client.chat.say(command.channel, '/me ' + command.username + ' emerges from the shadows, squinting against the light, skin pale and waxen...');
   },
+  async uptime(client, command) {
+    const { users: [{ id }] } = await client.api.get('users', { search: { login: command.channel.substring(1) } });
+    const { stream: { createdAt: streamStartTime } } = await client.api.get('streams/' + id);
+    let totalUptime = Math.floor((Date.now() - Date.parse(streamStartTime)) / 1000);
+    const uptimeSeconds = totalUptime % 60;
+    totalUptime = Math.floor(totalUptime / 60);
+    const uptimeMinutes = totalUptime % 60;
+    totalUptime = Math.floor(totalUptime / 60);
+    const uptimeHours = totalUptime;
+    let output = uptimeSeconds + ' seconds.';
+    if (uptimeMinutes > 0) {
+      output = uptimeMinutes + ' minutes, ' + output;
+    }
+    if (uptimeHours > 0) {
+      output = uptimeHours + ' hours, ' + output;
+    }
+    client.chat.say(command.channel, '/me Uptime: ' + output);
+  },
 };
 
 commands.commands = functions.say(Object.keys(commands).join(', '));
