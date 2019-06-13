@@ -18,6 +18,9 @@ const commands = {
     }
     client.chat.say(command.channel, '/me Blessings be upon you' + endOfBlessing + '!');
   },
+  unlurk(client, command) {
+    client.chat.say(command.channel, '/me ' + command.username + ' emerges from the shadows, squinting against the light, skin pale and waxen...');
+  },
 };
 
 module.exports = commands;
