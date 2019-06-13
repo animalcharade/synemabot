@@ -23,4 +23,6 @@ const commands = {
   },
 };
 
+commands.commands = functions.say(Object.keys(commands).join(', '));
+
 module.exports = commands;
