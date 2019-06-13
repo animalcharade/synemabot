@@ -1,10 +1,10 @@
 module.exports = function globalCooldown(cooldown, handler) {
   let timeLastUsed = 0;
-  return (client, command) => {
+  return (...args) => {
     if (Date.now() - timeLastUsed < cooldown) {
       return;
     }
-    handler(client, command);
+    handler(...args);
     timeLastUsed = Date.now();
   };
 };
