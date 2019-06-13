@@ -23,7 +23,12 @@ const commands = {
   },
   async uptime(client, command) {
     const { users: [{ id }] } = await client.api.get('users', { search: { login: command.channel.substring(1) } });
-    const { stream: { createdAt: streamStartTime } } = await client.api.get('streams/' + id);
+    const { stream } = await client.api.get('streams/' + id);
+    if (!stream) {
+      client.chat.say(command.channel, '/me The channel is not live.');
+      return;
+    }
+    const { createdAt: streamStartTime } = stream;
     let totalUptime = Math.floor((Date.now() - Date.parse(streamStartTime)) / 1000);
     const uptimeSeconds = totalUptime % 60;
     totalUptime = Math.floor(totalUptime / 60);
