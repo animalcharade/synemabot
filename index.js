@@ -24,12 +24,12 @@ function onChatHandler(input) {
 
   // Is the message a command?
   if (message[0] === '!') {
-    const commandName = message.substring(1);
+    const [commandName, ...args] = message.substring(1).split(' ');
     const commandHandler = commands[commandName];
     if (commandHandler) {
-      commandHandler(client, input);
+      commandHandler(client, input, ...args);
     } else {
-      console.log('No such command!');
+      console.log('No such command: ' + commandName);
     }
   }
 }
