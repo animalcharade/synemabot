@@ -2,6 +2,8 @@
 require('dotenv').config();
 const TwitchJs = require('twitch-js').default;
 
+const commands = require('./src/commands');
+
 // Twitch login deets
 const login = {
   token: process.env.OAUTH_TOKEN,
@@ -21,8 +23,14 @@ function onChatHandler(input) {
   const message = input.message.trim();
 
   // Is the message a command?
-  if (message === '!lol') {
-    chat.say(targetChannel, 'lol');
+  if (message[0] === '!') {
+    const commandName = message.substring(1);
+    const commandHandler = commands[commandName];
+    if (commandHandler) {
+      commandHandler(client, input);
+    } else {
+      console.log('No such command!');
+    }
   }
 }
 
