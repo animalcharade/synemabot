@@ -2,7 +2,9 @@ module.exports = function falgsc() {
   let automatedness = 0;
 
   function decay() {
-    automatedness -= 1;
+    if (automatedness > 0) {
+      automatedness -= 1;
+    }
   }
 
   setInterval(decay, 1000 * 60 * 10);
