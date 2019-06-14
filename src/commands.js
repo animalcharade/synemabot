@@ -3,6 +3,7 @@ const functions = require('./functions');
 const MINUTE = 60000;
 
 const commands = {
+  discord: functions.globalCooldown(MINUTE, functions.say('Join the Arandanauts Discord! https://discord.gg/SPHTCyN')),
   falgsc: functions.globalCooldown(MINUTE, functions.falgsc()),
   kingofpeen: functions.globalCooldown(MINUTE, functions.say('All hail The King Of Peen! Let us rejoice and remember His great coronation! https://www.twitch.tv/michaelaranda/clip/JazzyFantasticCattleShazBotstix')),
   lol: functions.globalCooldown(MINUTE, functions.say('lol')),
