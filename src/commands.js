@@ -22,8 +22,7 @@ const commands = {
     client.chat.say(command.channel, '/me ' + command.username + ' emerges from the shadows, squinting against the light, skin pale and waxen...');
   },
   async uptime(client, command) {
-    const { users: [{ id }] } = await client.api.get('users', { search: { login: command.channel.substring(1) } });
-    const { stream } = await client.api.get('streams/' + id);
+    const { stream } = await client.api.get('streams/' + client.streamer.id);
     if (!stream) {
       client.chat.say(command.channel, '/me The channel is not live.');
       return;

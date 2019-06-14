@@ -39,6 +39,8 @@ chat.on('PRIVMSG', onChatHandler);
 
 // Connect to Twitch
 async function connect() {
+  const { users: [user] } = await client.api.get('users', { search: { login: targetChannel } });
+  client.streamer = user;
   await chat.connect();
   console.log('We connected to a thing.');
   await chat.join(targetChannel);
