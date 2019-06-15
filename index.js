@@ -21,7 +21,12 @@ function onChatHandler(input) {
   console.log(input);
 
   // Remove leading and trailing whitespace
-  const message = input.message.trim();
+  let message = input.message.trim();
+
+  // Is the message an action?
+  if (message.startsWith('\u0001ACTION ')) {
+    message = message.substring(8, message.length - 1);
+  }
 
   // Is the message a command?
   if (message[0] === '!') {
