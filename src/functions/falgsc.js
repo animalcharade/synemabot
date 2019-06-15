@@ -7,7 +7,7 @@ module.exports = function falgsc() {
     }
   }
 
-  setInterval(decay, 1000 * 60 * 10);
+  setInterval(decay, 1000 * 60 * 2);
   return function falgscHandler(client, command) {
     if (automatedness < 100) {
       automatedness += 10;
