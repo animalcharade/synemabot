@@ -11,6 +11,7 @@ const commands = {
   lurk(client, command) {
     client.chat.say(command.channel, '/me ' + command.username + ' crawls into the shadows to lurk from afar, eyes shining through the darkness like candles in the night...');
   },
+  mcr: functions.userCooldown(MINUTE * 10, functions.mcr()),
   milk: functions.globalCooldown(MINUTE, functions.say('Michael has an unyielding distaste for cow juice. Despite its alleged spice-reducing properties, it will not be permitted in, on, or around Michael\'s mouth.')),
   rofl: functions.globalCooldown(MINUTE, functions.say('rofl')),
   toddbless(client, command, ...args) {

@@ -11,6 +11,8 @@ module.exports = function userCooldown(cooldown, handler) {
 
     // Has this username used this command more recently than our cooldown?
     if (Date.now() - users[username] < cooldown) {
+      // Notify the user via whisper that they cannot use this command yet.
+      client.chat.whisper(command.username, 'Sorry, ' + command + ' has ' + ((cooldown - (Date.now() - users[username])) / 1000) + ' seconds left in its cooldown!'); // TODO: Fix the display
       return;
     }
     handler(client, command, ...args);

@@ -13,6 +13,7 @@
   "dependencies": {
     "auto-load": "^3.0.4",
     "dotenv": "^8.0.0",
+    "node-persist": "^3.0.4",
     "twitch-js": "^2.0.0-beta.30"
   },
   "devDependencies": {
