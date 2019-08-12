@@ -1,5 +1,6 @@
 module.exports = function timeFormatter(timeInput) {
-  let time = timeInput;
+  // Convert from milliseconds to seconds
+  let time = Math.floor(timeInput / 1000);
   const seconds = time % 60;
   time = Math.floor(time / 60);
   const minutes = time % 60;

@@ -12,17 +12,16 @@ module.exports = function userCooldown(cooldown, handler) {
     }
 
     // Has this username used this command more recently than our cooldown?
-    const cooldownRemaining = Date.now() - users[username];
-    if (cooldownRemaining < cooldown) {
+    const cooldownRemaining = cooldown - (Date.now() - users[username]);
+    console.log(users);
+    if (cooldownRemaining > 0) {
       // Notify the user via whisper that they cannot use this command yet.
-      client.chat.whisper(command.username, 'Sorry, ' + command + ' has ' + timeFormatter(cooldownRemaining) + ' left in its cooldown!'); // TODO: Fix the display
+      client.chat.whisper(command.username, 'Sorry, ' + command + ' has ' + timeFormatter(cooldownRemaining) + ' left in its cooldown!');
       return;
     }
     handler(client, command, ...args);
 
     // Set the username's last used time to now
     users[username] = Date.now();
-
-    console.log(users);
   };
 };
