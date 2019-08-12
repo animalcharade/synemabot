@@ -34,7 +34,7 @@ const commands = {
     }
     const { createdAt: streamStartTime } = stream;
     const totalUptime = Math.floor((Date.now() - Date.parse(streamStartTime)) / 1000);
-    client.chat.say(command.channel, '/me Uptime: ' + timeFormatter(totalUptime));
+    client.chat.say(command.channel, '/me Uptime: ' + timeFormatter(totalUptime) + '.');
   },
 };
 
