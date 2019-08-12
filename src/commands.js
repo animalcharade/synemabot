@@ -1,4 +1,5 @@
 const functions = require('./functions');
+const timeFormatter = require('./timeFormatter');
 
 const MINUTE = 60000;
 
@@ -32,20 +33,8 @@ const commands = {
       return;
     }
     const { createdAt: streamStartTime } = stream;
-    let totalUptime = Math.floor((Date.now() - Date.parse(streamStartTime)) / 1000);
-    const uptimeSeconds = totalUptime % 60;
-    totalUptime = Math.floor(totalUptime / 60);
-    const uptimeMinutes = totalUptime % 60;
-    totalUptime = Math.floor(totalUptime / 60);
-    const uptimeHours = totalUptime;
-    let output = uptimeSeconds + ' seconds.';
-    if (uptimeMinutes > 0) {
-      output = uptimeMinutes + ' minutes, ' + output;
-    }
-    if (uptimeHours > 0) {
-      output = uptimeHours + ' hours, ' + output;
-    }
-    client.chat.say(command.channel, '/me Uptime: ' + output);
+    const totalUptime = Math.floor((Date.now() - Date.parse(streamStartTime)) / 1000);
+    client.chat.say(command.channel, '/me Uptime: ' + timeFormatter(totalUptime));
   },
 };
 
