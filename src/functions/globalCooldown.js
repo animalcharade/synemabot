@@ -7,6 +7,7 @@ module.exports = function globalCooldown(cooldown, handler) {
     // TODO: Fix this to prevent multiple commands from getting through in the event
     // that it gets called twice in quick succession, wherein the handler might take
     // a while to run before setting the timeLastUsed variable
+    // See also: userCooldown
     await handler(...args);
     timeLastUsed = Date.now();
   };

@@ -19,6 +19,10 @@ module.exports = function userCooldown(cooldown, handler) {
       await client.chat.whisper(command.username, 'Sorry, ' + command + ' has ' + timeFormatter(cooldownRemaining) + ' left in its cooldown!');
       return;
     }
+    // TODO: Fix this to prevent multiple commands from getting through in the event
+    // that it gets called twice in quick succession, wherein the handler might take
+    // a while to run before setting the timeLastUsed variable
+    // See also: globalCooldown
     await handler(client, command, ...args);
 
     // Set the username's last used time to now
