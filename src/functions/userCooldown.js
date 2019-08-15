@@ -2,7 +2,7 @@ const timeFormatter = require('../timeFormatter');
 
 module.exports = function userCooldown(cooldown, handler) {
   const users = {};
-  return (client, command, ...args) => {
+  return async (client, command, ...args) => {
     // Get the username of the person attempting to use the command
     const { username } = command;
 
@@ -16,10 +16,10 @@ module.exports = function userCooldown(cooldown, handler) {
     console.log(users);
     if (cooldownRemaining > 0) {
       // Notify the user via whisper that they cannot use this command yet.
-      client.chat.whisper(command.username, 'Sorry, ' + command + ' has ' + timeFormatter(cooldownRemaining) + ' left in its cooldown!');
+      await client.chat.whisper(command.username, 'Sorry, ' + command + ' has ' + timeFormatter(cooldownRemaining) + ' left in its cooldown!');
       return;
     }
-    handler(client, command, ...args);
+    await handler(client, command, ...args);
 
     // Set the username's last used time to now
     users[username] = Date.now();

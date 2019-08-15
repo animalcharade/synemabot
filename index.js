@@ -17,7 +17,7 @@ const client = new TwitchJs(login);
 const { chat } = client;
 
 // When a message comes in...
-function onChatHandler(input) {
+async function onChatHandler(input) {
   console.log(input);
 
   // Remove leading and trailing whitespace
@@ -25,6 +25,7 @@ function onChatHandler(input) {
 
   // Is the message an action?
   if (message.startsWith('\u0001ACTION ')) {
+    // Then we need to remove the '0001ACTION' text from the beginning of the message
     message = message.substring(8, message.length - 1);
   }
 
@@ -33,7 +34,11 @@ function onChatHandler(input) {
     const [commandName, ...args] = message.substring(1).split(' ');
     const commandHandler = commands[commandName];
     if (commandHandler) {
-      commandHandler(client, input, ...args);
+      try {
+        await commandHandler(client, input, ...args);
+      } catch (err) {
+        console.log('commandHandler() made a booboo: ' + err);
+      }
     } else {
       console.log('No such command: ' + commandName);
     }

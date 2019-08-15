@@ -8,7 +8,7 @@ module.exports = function falgsc() {
   }
 
   setInterval(decay, 1000 * 60 * 2);
-  return function falgscHandler(client, command) {
+  return async function falgscHandler(client, command) {
     if (automatedness < 100) {
       automatedness += 10;
     }
@@ -18,6 +18,6 @@ module.exports = function falgsc() {
     } else {
       output = '/me The luxury gay space communism is FULLY AUTOMATED.';
     }
-    client.chat.say(command.channel, output);
+    await client.chat.say(command.channel, output);
   };
 };
