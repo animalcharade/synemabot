@@ -18,6 +18,6 @@ module.exports = function lyricsImporter(path) {
   lyrics = lyrics.map(x => x.replace(/[?".,!()]/g, ''));
   // Add ... to each item
   lyrics = lyrics.map(x => x + '...');
-  // return string.split('\n').map(x => `${x.toUpperCase().replace(/[?".,/#!$%^&*;:{}=\-_`~()]/g, '')}...`).filter(x => x);
+  // Return the resulting array
   return lyrics;
 };
