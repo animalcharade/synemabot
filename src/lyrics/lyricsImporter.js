@@ -7,6 +7,7 @@ module.exports = function lyricsImporter(path) {
     file = fs.readFileSync(path, 'utf8');
   } catch (err) {
     console.log('LyricsImporter is sad! No such file: ' + path);
+    throw err;
   }
   // Split the file into an array by newlines
   let lyrics = file.split('\n');
