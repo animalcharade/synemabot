@@ -1,9 +1,10 @@
 const falgsc = require('./falgsc');
+const lyricsImporter = require('../lyrics/lyricsImporter');
+
+const lyrics = lyricsImporter('./src/lyrics/mcrLyrics.txt');
 
 module.exports = function mcr() {
   let songPosition = 0;
-
-  const lyrics = ['WHEN I WAS...', 'A YOUNG BOY...', 'MY FATHER...', 'TOOK ME INTO THE CITY...', 'TO SEE A MARCHING BAND...'];
 
   return async function mcrHandler(client, command) {
     // If Tsimants uses the command, but the luxury gay space communism isn't fully automated, send a LASIK link instead!
