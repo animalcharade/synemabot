@@ -21,6 +21,7 @@ const timeFormatter = require('./timeFormatter');
 const MINUTE = 60000;
 
 const commands = {
+  allstar: functions.userCooldown(MINUTE * 10, functions.songLyrics('./src/lyrics/allstarLyrics.txt')),
   discord: functions.globalCooldown(MINUTE, functions.say('Join the Arandanauts Discord! https://discord.gg/SPHTCyN')),
   donate: functions.globalCooldown(MINUTE, functions.say('https://streamlabs.com/michaelaranda')),
   falgsc: functions.userCooldown(MINUTE * 10, functions.falgsc.handler),
