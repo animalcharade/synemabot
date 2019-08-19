@@ -78,7 +78,9 @@ chat.on('PRIVMSG', onChatHandler);
 
 // Function for announcing our arrival after successfully connecting to Twitch
 async function announceConnection() {
-  await client.chat.say(targetChannel, '/me has rebooted, and is ready to rumble! BEEP BOOP');
+  await client.chat.say(targetChannel, '/me has rebooted! BEEP BOOP! '
+  + 'Visit https://github.com/animalcharade/synemabot/commits/master to see my latest updates!');
+  // TODO: Update URL^ to something shorter after acquiring WIDRN.tools domain
 }
 
 // Connect to Twitch
