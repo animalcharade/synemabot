@@ -1,3 +1,32 @@
+//  //  //
+
+//  SynemaBot: A bot to provide interactive community engagement on Twitch
+//  Copyright (C) 2019  Synema Studios, LLC
+
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+//  For questions or comments about this program, email hello@synemastudios.com
+
+//  //  //
+
+// Display copyright info on launch
+console.log('SynemaBot Copyright (C) 2019  Synema Studios\n'
+  + 'This program comes with ABSOLUTELY NO WARRANTY\n'
+  + 'This is free software, and you are welcome to redistribute it\n'
+  + 'under certain conditions.\n'
+  + 'See LICENSE.txt in this program\'s root folder for details.');
+
 // Requirements
 require('dotenv').config();
 const TwitchJs = require('twitch-js').default;
