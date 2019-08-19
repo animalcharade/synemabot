@@ -1,6 +1,7 @@
 # SynemaBot
 
 A bot to provide interactive community engagement on Twitch
+
 Copyright (C) 2019 Synema Studios, LLC
 
 Programmed by Michael Aranda with significant guidance and assistance from Oliver Wright
