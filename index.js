@@ -47,6 +47,11 @@ async function onChatHandler(input) {
 
 chat.on('PRIVMSG', onChatHandler);
 
+// Function for announcing our arrival after successfully connecting to Twitch
+async function announceConnection() {
+  await client.chat.say(targetChannel, '/me has rebooted, and is ready to rumble! BEEP BOOP');
+}
+
 // Connect to Twitch
 async function connect() {
   const { users: [user] } = await client.api.get('users', { search: { login: targetChannel } });
@@ -55,6 +60,7 @@ async function connect() {
   console.log('We connected to a thing.');
   await chat.join(targetChannel);
   console.log('We joined a thing.');
+  await announceConnection();
 }
 
 connect();
