@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU General Public License
 // along with SynemaBot.  If not, see <http://www.gnu.org/licenses/>.
 
-const say = require('../functions/say');
+const say = require('./say');
 
 describe('say()', () => {
   test('returns a function', () => {
