@@ -18,6 +18,7 @@
 const functions = require('./functions');
 const timeFormatter = require('./timeFormatter');
 const isCurrentlyStreaming = require('./liveStatusChecker');
+const publicServiceAnnouncements = require('./publicServiceAnnouncements');
 
 const MINUTE = 60000;
 
@@ -34,6 +35,9 @@ const commands = {
   mcr: functions.userCooldown(MINUTE * 10, functions.mcr()),
   milk: functions.globalCooldown(MINUTE, functions.say('Michael has an unyielding distaste for cow juice. Despite its alleged spice-reducing properties, it will not be permitted in, on, or around Michael\'s mouth.')),
   rofl: functions.globalCooldown(MINUTE, functions.say('rofl')),
+  settimer(client, command, newTimer) {
+    publicServiceAnnouncements.setTimer(newTimer);
+  },
   async toddbless(client, command, ...args) {
     const blessingTarget = args.join(' ');
     let endOfBlessing = '';
