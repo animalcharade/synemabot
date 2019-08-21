@@ -46,13 +46,17 @@ const commands = {
     await client.chat.say(command.channel, '/me ' + command.username + ' emerges from the shadows, squinting against the light, skin pale and waxen...');
   },
   async uptime(client, command) {
-    const { stream } = await client.api.get('streams/' + client.streamer.id);
+    // Are we currently streaming?
     if (await isCurrentlyStreaming(client) === false) {
+      // If no, respond in kind
       await client.chat.say(command.channel, '/me The channel is not "up", as it were.');
       return;
     }
-    const { createdAt: streamStartTime } = stream;
+    // If yes, get the streamStartTime out of the stream object from the API
+    const { stream: { createdAt: streamStartTime } } = await client.api.get('streams/' + client.streamer.id);
+    // Calculate the difference between the streamStartTime and now
     const totalUptime = (Date.now() - Date.parse(streamStartTime));
+    // Display the result
     await client.chat.say(command.channel, '/me Uptime: ' + timeFormatter(totalUptime) + '.');
   },
 };
