@@ -17,6 +17,7 @@
 
 const functions = require('./functions');
 const timeFormatter = require('./timeFormatter');
+const isCurrentlyStreaming = require('./liveStatusChecker');
 
 const MINUTE = 60000;
 
@@ -46,8 +47,8 @@ const commands = {
   },
   async uptime(client, command) {
     const { stream } = await client.api.get('streams/' + client.streamer.id);
-    if (!stream) {
-      await client.chat.say(command.channel, '/me The channel is not live.');
+    if (await isCurrentlyStreaming(client) === false) {
+      await client.chat.say(command.channel, '/me The channel is not "up", as it were.');
       return;
     }
     const { createdAt: streamStartTime } = stream;
