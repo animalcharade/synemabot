@@ -31,6 +31,7 @@ console.log('SynemaBot Copyright (C) 2019  Synema Studios\n'
 require('dotenv').config();
 const TwitchJs = require('twitch-js').default;
 
+// Load our available Twitch chat commands
 const commands = require('./src/commands');
 
 // Twitch login deets
@@ -41,8 +42,9 @@ const login = {
 };
 const targetChannel = process.env.CHANNEL_NAME;
 
-console.log(TwitchJs);
+// Create a new TwitchJs client with our login deets
 const client = new TwitchJs(login);
+// Pull the chat component out of our client for ease of chat access
 const { chat } = client;
 
 // When a message comes in...
@@ -74,6 +76,7 @@ async function onChatHandler(input) {
   }
 }
 
+// When a PRIVMSG is received, run onChatHandler
 chat.on('PRIVMSG', onChatHandler);
 
 // Function for announcing our arrival after successfully connecting to Twitch
@@ -87,10 +90,11 @@ async function announceConnection() {
 async function connect() {
   const { users: [user] } = await client.api.get('users', { search: { login: targetChannel } });
   client.streamer = user;
+  // Connect to the Twitch IRC system
   await chat.connect();
-  console.log('We connected to a thing.');
+  // Join our specific channel
   await chat.join(targetChannel);
-  console.log('We joined a thing.');
+  // Let the world know we're single and ready to mingle
   await announceConnection();
 }
 
