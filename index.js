@@ -30,6 +30,7 @@ console.log('SynemaBot Copyright (C) 2019  Synema Studios\n'
 // Requirements
 require('dotenv').config();
 const process = require('process');
+const storage = require('node-persist');
 const TwitchJs = require('twitch-js').default;
 const publicServiceAnnouncements = require('./src/publicServiceAnnouncements');
 
@@ -102,7 +103,14 @@ async function connect() {
 
 async function main() {
   try {
+    // Initiate persistant storage
+    await storage.init({
+      dir: 'storage',
+    });
+
+    // Connect to Twitch
     await connect();
+
     // Start our PSAs!
     publicServiceAnnouncements.run(client, targetChannel);
   } catch (err) {
