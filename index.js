@@ -29,6 +29,7 @@ console.log('SynemaBot Copyright (C) 2019  Synema Studios\n'
 
 // Requirements
 require('dotenv').config();
+const process = require('process');
 const TwitchJs = require('twitch-js').default;
 const publicServiceAnnouncements = require('./src/publicServiceAnnouncements');
 
@@ -99,11 +100,15 @@ async function connect() {
   await announceConnection();
 }
 
-connect();
-
-// Start our PSAs!
-async function startPSA() {
-  await publicServiceAnnouncements.run(client, targetChannel);
+async function main() {
+  try {
+    await connect();
+    // Start our PSAs!
+    publicServiceAnnouncements.run(client, targetChannel);
+  } catch (err) {
+    console.error(err); // TODO: Maybe put this in a file at some point?
+    process.exit(1);
+  }
 }
 
-startPSA();
+main();
