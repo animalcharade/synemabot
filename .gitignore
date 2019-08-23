@@ -60,7 +60,7 @@ typings/
 # next.js build output
 .next
 
-#Copyrighted lyrics files
+# Copyrighted lyrics files
 src/lyrics/*.txt
 
 # Local storage
