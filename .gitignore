@@ -63,5 +63,5 @@ typings/
 #Copyrighted lyrics files
 src/lyrics/*.txt
 
-#Local storage
+# Local storage
 storage/
