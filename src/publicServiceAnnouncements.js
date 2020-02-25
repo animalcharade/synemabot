@@ -18,6 +18,7 @@
 const fs = require('fs');
 
 const MINUTE = 1000 * 60;
+const MIN_TIMER = 1;
 
 let messageIndex = 0;
 let timer = MINUTE * 15;
@@ -50,6 +51,8 @@ module.exports = {
     setTimeout(broadcast, timer);
   },
   setTimer: (newTimer) => {
-    timer = MINUTE * newTimer;
+    if (newTimer >= MIN_TIMER) {
+      timer = MINUTE * newTimer;
+    }
   },
 };
