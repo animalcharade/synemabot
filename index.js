@@ -31,8 +31,14 @@ console.log('SynemaBot Copyright (C) 2019  Synema Studios\n'
 require('dotenv').config();
 const process = require('process');
 const storage = require('node-persist');
+const TwitchClient = require('twitch').default;
 const TwitchJs = require('twitch-js').default;
+const PubSubClient = require('twitch-pubsub-client').default;
 const publicServiceAnnouncements = require('./src/publicServiceAnnouncements');
+const say = require('./src/functions/say');
+
+// Set up pubsub things
+const pubSubClient = new PubSubClient();
 
 // Load our available Twitch chat commands
 const commands = require('./src/commands');
@@ -40,7 +46,7 @@ const commands = require('./src/commands');
 // Twitch login deets
 const login = {
   clientId: process.env.CLIENT_ID,
-  token: process.env.OAUTH_TOKEN,
+  token: process.env.OAUTH_TOKEN_BOT,
   username: process.env.BOT_USERNAME,
 };
 const targetChannel = process.env.CHANNEL_NAME;
@@ -110,7 +116,17 @@ async function main() {
 
     // Connect to Twitch
     await connect();
-
+    const clientInfo = await TwitchClient.getTokenInfo(process.env.OAUTH_TOKEN_TARGETCHANNEL);
+    const twitchClient = TwitchClient.withCredentials(clientInfo.clientId, process.env.OAUTH_TOKEN_TARGETCHANNEL, clientInfo.scopes);
+    await pubSubClient.registerUserListener(twitchClient);
+    await pubSubClient.onRedemption(clientInfo.userId, async (message) => {
+      if (message.rewardId === 'b1b780ec-b00c-47dd-b742-b8a8f6aea2ff') {
+        await client.chat.say(targetChannel, '/emoteonly');
+        setTimeout(async () => {
+          await client.chat.say(targetChannel, '/emoteonlyoff');
+        }, 60000);
+      }
+    });
     // Start our PSAs!
     publicServiceAnnouncements.run(client, targetChannel);
   } catch (err) {

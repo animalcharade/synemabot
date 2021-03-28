@@ -20,10 +20,12 @@ const timeFormatter = require('./timeFormatter');
 const isCurrentlyStreaming = require('./liveStatusChecker');
 const publicServiceAnnouncements = require('./publicServiceAnnouncements');
 
-const MINUTE = 60000;
+const SECOND = 1000;
+const MINUTE = 60 * SECOND;
 
 const commands = {
   allstar: functions.userCooldown(MINUTE * 10, functions.songLyrics('./src/lyrics/allstarLyrics.txt')),
+  // boars: functions.globalCooldown(SECOND * 10, functions.boars.addBoars),
   discord: functions.globalCooldown(MINUTE, functions.say('Join the Arandanauts Discord! https://discord.gg/SPHTCyN')),
   donate: functions.globalCooldown(MINUTE, functions.say('https://streamlabs.com/michaelaranda')),
   falgsc: functions.userCooldown(MINUTE * 10, functions.falgsc.handler),
