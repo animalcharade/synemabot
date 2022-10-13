@@ -17,9 +17,7 @@ jobs:
       run: npm ci
 
     - name: ESLint checks
-      uses: gimenete/eslint-action@1.0
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: npm run lint
 
   jest:
     runs-on: ubuntu-latest
