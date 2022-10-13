@@ -34,7 +34,7 @@ try {
 // Split the file into an array by newlines
 let messages = messagesFile.split('\n');
 // Remove empty items
-messages = messages.filter(x => x);
+messages = messages.filter((x) => x);
 
 module.exports = {
   run: (client, targetChannel) => {

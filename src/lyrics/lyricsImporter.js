@@ -29,13 +29,13 @@ module.exports = function lyricsImporter(path) {
   // Split the file into an array by newlines
   let lyrics = file.split('\n');
   // Remove empty items
-  lyrics = lyrics.filter(x => x);
+  lyrics = lyrics.filter((x) => x);
   // Make everything uppercase
-  lyrics = lyrics.map(x => x.toUpperCase());
+  lyrics = lyrics.map((x) => x.toUpperCase());
   // Strip unnecessary puntuation
-  lyrics = lyrics.map(x => x.replace(/[?".,!()]/g, ''));
+  lyrics = lyrics.map((x) => x.replace(/[?".,!()]/g, ''));
   // Add ... to each item
-  lyrics = lyrics.map(x => x + '...');
+  lyrics = lyrics.map((x) => x + '...');
   // Return the resulting array
   return lyrics;
 };
