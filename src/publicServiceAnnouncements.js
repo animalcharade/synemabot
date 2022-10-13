@@ -16,6 +16,7 @@
 // along with SynemaBot.  If not, see <http://www.gnu.org/licenses/>.
 
 const fs = require('fs');
+const isCurrentlyStreaming = require('./liveStatusChecker');
 
 const MINUTE = 1000 * 60;
 const MIN_TIMER = 1;
@@ -40,6 +41,9 @@ module.exports = {
   run: (client, targetChannel) => {
     async function broadcast() {
       setTimeout(broadcast, timer);
+      if (await isCurrentlyStreaming(client) === false) {
+        return;
+      }
       await client.chat.say(targetChannel, '/me ' + messages[messageIndex]);
       if (messageIndex < messages.length - 1) {
         messageIndex += 1;
