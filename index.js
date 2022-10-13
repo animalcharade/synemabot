@@ -36,6 +36,7 @@ const publicServiceAnnouncements = require('./src/publicServiceAnnouncements');
 
 // Load our available Twitch chat commands
 const commands = require('./src/commands');
+
 // Twitch login deets
 const login = {
   clientId: process.env.CLIENT_ID,
