@@ -36,11 +36,10 @@ const publicServiceAnnouncements = require('./src/publicServiceAnnouncements');
 
 // Load our available Twitch chat commands
 const commands = require('./src/commands');
-
 // Twitch login deets
 const login = {
   clientId: process.env.CLIENT_ID,
-  token: process.env.OAUTH_TOKEN,
+  token: process.env.OAUTH_TOKEN_BOT,
   username: process.env.BOT_USERNAME,
 };
 const targetChannel = process.env.CHANNEL_NAME;
@@ -91,7 +90,7 @@ async function announceConnection() {
 
 // Connect to Twitch
 async function connect() {
-  const { users: [user] } = await client.api.get('users', { search: { login: targetChannel } });
+  const { data: [user] } = await client.api.get('users', { search: { login: targetChannel } });
   client.streamer = user;
   // Connect to the Twitch IRC system
   await chat.connect();
