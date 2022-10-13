@@ -17,7 +17,7 @@ jobs:
       run: npm ci
 
     - name: ESLint checks
-      run: npm lint
+      run: npm run lint
 
   jest:
     runs-on: ubuntu-latest
