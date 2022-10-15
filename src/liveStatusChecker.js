@@ -17,10 +17,10 @@
 
 module.exports = async function isCurrentlyStreaming(client) {
   const { stream } = await client.api.get(
-    'streams', 
+    'streams',
     {
       search: {
-        user_id: userclient.streamer.id,
+        user_id: client.streamer.id,
       },
     },
   );
