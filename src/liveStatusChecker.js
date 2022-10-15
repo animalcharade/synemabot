@@ -20,7 +20,7 @@ module.exports = async function isCurrentlyStreaming(client) {
     'streams', 
     {
       search: {
-        user_id: userclient.streamer.id
+        user_id: userclient.streamer.id,
       },
     },
   );
