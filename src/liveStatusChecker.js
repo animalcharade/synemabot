@@ -16,7 +16,7 @@
 // along with SynemaBot.  If not, see <http://www.gnu.org/licenses/>.
 
 module.exports = async function isCurrentlyStreaming(client) {
-  const { stream } = await client.api.get(
+  const response = await client.api.get(
     'streams',
     {
       search: {
@@ -24,8 +24,5 @@ module.exports = async function isCurrentlyStreaming(client) {
       },
     },
   );
-  if (stream) {
-    return true;
-  }
-  return false;
+  return response.data.length > 0;
 };
