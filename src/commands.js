@@ -57,7 +57,7 @@ const commands = {
       return;
     }
     // If yes, get the streamStartTime out of the stream object from the API
-    const { stream: { createdAt: streamStartTime } } = await client.api.get('streams/' + client.streamer.id);
+    const { data: [{ startedAt: streamStartTime }] } = await client.api.get('streams', { search: { user_id: client.streamer.id } });
     // Calculate the difference between the streamStartTime and now
     const totalUptime = (Date.now() - Date.parse(streamStartTime));
     // Display the result
